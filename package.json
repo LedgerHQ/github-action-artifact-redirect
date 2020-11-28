@@ -1,0 +1,8 @@
+{
+  "name": "github-action-artifact-link",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
