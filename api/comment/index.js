@@ -12,7 +12,8 @@ module.exports = async (req, res) => {
   });
   const { token } = await auth({
     type: "installation",
-    repositories: ["LedgerHQ/ledger-live-desktop"]
+    repositories: ["LedgerHQ/ledger-live-desktop"],
+    installationId: process.env.GHBOT_INSTALLATIONID,
   });
   const { body } = req;
 
