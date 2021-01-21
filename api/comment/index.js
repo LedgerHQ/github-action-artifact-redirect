@@ -17,6 +17,8 @@ module.exports = async (req, res) => {
   });
   const { body } = req;
 
+  console.log(GHBOT_INSTALLATIONID);
+
   const baseUrl = `https://api.github.com/repos/${req.query.owner}/${req.query.repo}`;
 
   try {
