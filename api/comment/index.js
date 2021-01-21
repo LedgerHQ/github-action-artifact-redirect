@@ -3,6 +3,7 @@ const { createAppAuth } = require("@octokit/auth-app");
 const atob = require("atob");
 
 module.exports = async (req, res) => {
+  console.log(process.env.GHBOT_INSTALLATIONID);
   const auth = createAppAuth({
     appId: process.env.GHBOT_APPID,
     privateKey: atob(process.env.GHBOT_PRIVATEKEY),
@@ -16,8 +17,6 @@ module.exports = async (req, res) => {
     installationId: process.env.GHBOT_INSTALLATIONID,
   });
   const { body } = req;
-
-  console.log(GHBOT_INSTALLATIONID);
 
   const baseUrl = `https://api.github.com/repos/${req.query.owner}/${req.query.repo}`;
 
