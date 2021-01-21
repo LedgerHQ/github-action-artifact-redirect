@@ -1,5 +1,10 @@
 {
     "env": {
-      "GHTOKEN": "@ghtoken"
+      "GHTOKEN": "@ghtoken",
+      "GHBOT_SECRET": "@ghbot-secret",
+      "GHBOT_APPID": "ghbot-appid",
+      "GHBOT_CLIENTID": "ghbot-clientid",
+      "GHBOT_PRIVATEKEY": "ghbot-privatekey",
+      "GHBOT_INSTALLATIONID": "ghbot-installationid"
     }
   }
