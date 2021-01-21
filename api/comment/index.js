@@ -3,7 +3,6 @@ const { createAppAuth } = require("@octokit/auth-app");
 const atob = require("atob");
 
 module.exports = async (req, res) => {
-  console.log(process.env.GHBOT_INSTALLATIONID);
   const auth = createAppAuth({
     appId: process.env.GHBOT_APPID,
     privateKey: atob(process.env.GHBOT_PRIVATEKEY),
@@ -14,7 +13,6 @@ module.exports = async (req, res) => {
   const { token } = await auth({
     type: "installation",
     repositories: ["LedgerHQ/ledger-live-desktop"],
-    installationId: process.env.GHBOT_INSTALLATIONID,
   });
   const { body } = req;
 
