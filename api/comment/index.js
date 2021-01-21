@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { createAppAuth } = require("@octokit/auth-app");
-const atob = ("atob");
+const atob = require("atob");
 
 module.exports = async (req, res) => {
   const auth = createAppAuth({
