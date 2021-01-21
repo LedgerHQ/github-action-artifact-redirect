@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
       .post(
         `${baseUrl}/issues/${req.query.issueId}/comments`,
         JSON.stringify({
-          body: req?.body?.comment
+          body: req.body.comment
         }),
         {
           headers: {
