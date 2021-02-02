@@ -1,6 +1,20 @@
-import axios from "axios";
+const axios = require("axios");
+const { createAppAuth } = require("@octokit/auth-app");
+const atob = require("atob");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
+  const auth = createAppAuth({
+    appId: process.env.GHBOT_APPID,
+    privateKey: atob(process.env.GHBOT_PRIVATEKEY),
+    installationId: process.env.GHBOT_INSTALLATIONID,
+    clientId: process.env.GHBOT_CLIENTID,
+    clientSecret: process.env.GHBOT_SECRET,
+  });
+  const { token } = await auth({
+    type: "installation",
+    repositories: ["LedgerHQ/ledger-live-desktop"],
+  });
+
   const baseUrl = `https://api.github.com/repos/${req.query.owner}/${req.query.repo}`;
 
   axios
@@ -9,7 +23,7 @@ module.exports = (req, res) => {
       {
         headers: {
           'Accept': 'application/vnd.github.v3+json',
-          'Authorization': `token ${process.env.GHTOKEN}`
+          'Authorization': `Bearer ${token}`
         }
       }
     )
@@ -21,7 +35,7 @@ module.exports = (req, res) => {
           validateStatus: s => s === 302,
           headers: {
             'Accept': 'application/vnd.github.v3+json',
-            'Authorization': `token ${process.env.GHTOKEN}`
+            'Authorization': `Bearer ${token}`
           }
         }
       )
