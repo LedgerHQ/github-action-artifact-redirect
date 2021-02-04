@@ -52,6 +52,7 @@ module.exports = async (req, res) => {
       run.status !== 'completed' &&
       new Date(run.created_at) < new Date(currentRun.created_at)
     );
+    const cancelled = {};
     for (const {id, head_sha, status, html_url} of runningWorkflows) {
       console.log('Canceling run: ', {id, head_sha, status, html_url});
       result = await axios
@@ -66,8 +67,9 @@ module.exports = async (req, res) => {
           }
         );
       console.log(`Cancel run ${id} responded with status ${result.status}`);
+      cancelled[id] = result.status;
     }
-
+    res.status(200).json(cancelled)
   } catch(e) {
     res.status(500).json(e);
   }
