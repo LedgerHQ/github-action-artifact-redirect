@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
       console.log('Canceling run: ', {id, head_sha, status, html_url});
       result = await axios
         .post(
-          `${baseUrl}/actions/runs/${runId}/cancel`,
+          `${baseUrl}/actions/runs/${id}/cancel`,
           {
             headers: {
               'Accept': 'application/vnd.github.v3+json',
