@@ -58,6 +58,7 @@ module.exports = async (req, res) => {
       result = await axios
         .post(
           `${baseUrl}/actions/runs/${id}/cancel`,
+          null,
           {
             headers: {
               'Accept': 'application/vnd.github.v3+json',
